@@ -1,0 +1,7 @@
+img:
+  build: img
+  volumes_from:
+    - src
+
+src:
+  image: manuchen/tv407build_arm

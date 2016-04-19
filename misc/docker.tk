@@ -1,0 +1,61 @@
+# tk8.6
+#
+#
+
+# Pull base image.
+FROM ubt1410
+
+MAINTAINER Manu Chen (manuchen@gmail.com)
+
+# Set the env variable DEBIAN_FRONTEND to noninteractive to get
+# apt-get working without error output.
+ENV DEBIAN_FRONTEND noninteractive
+USER root
+# Update underlying ubuntu image and all necessary packages.
+RUN apt-get update && apt-get upgrade -y &&\
+	apt-get install -y tcl8.6 \
+            tcllib \
+            tcl-thread \
+            tcl-tclreadline \
+            tcl-tls \
+            tcl-trf \
+            tcl-udp \
+            tcl-vfs \
+            tclcurl \
+            tclgeoip \
+            tclodbc \
+            tclxml \
+            tdom \
+            tcl-tclex \
+            tcl-memchan \
+            tcl-combat \
+            tcl-signal \
+            tcl-sugar \
+            libpgtcl \
+            libsqlite-tcl \
+            mysqltcl \
+            tcl8.6-tdbc \
+            tcl8.6-tdbc-mysql \
+            tcl8.6-tdbc-odbc \
+            tcl8.6-tdbc-postgres \
+            tcl8.6-tdbc-sqlite3 \
+            itcl3 \
+            critcl \
+            xotcl \
+            tclxapian \
+            libtcl-chiark-1
+           
+# Arrange for a decent tclreadline prompt in interactive mode
+COPY tclshrc /root/.tclshrc
+
+# Make sure code put into the special tcl volume can lazily be filled
+# with packages 
+ENV TCLLIBPATH /opt/tcl /opt/tcl/lib
+
+# Define working directory.
+WORKDIR /data
+
+# Define default command.
+CMD ["/bin/bash"]
+
+
