@@ -2,6 +2,7 @@ FROM armbuild/ubuntu
 MAINTAINER Manu Chen
 
 # the build environment for tvheadend
+#docker build --no-cache=true -t tv407build_arm .
 
 RUN apt-get update && apt-get install -y gcc pkg-config python build-essential libssl-dev\
 	libhdhomerun-dev liburiparser-dev libdbus-1-dev && mkdir /mysrc
